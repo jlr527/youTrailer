@@ -1,0 +1,121 @@
+<!--Slide carrousel>-->
+<div class="row">
+
+  <div class="col ocult m1" style="height: 200px">
+      <a class="right" style="margin-top: 86px;" href="javascript:void(0);" ng-click="slickConfig.method.slickPrev()"><i class="material-icons">fast_rewind</i></a>
+  </div>
+  <div class="col s12 m10"> 
+      <script type="text/ng-template" id="tpl.html">
+          <a class="" href="#"><img class="imageSize" ng-src="{{img.url}}"></a>
+    </script>
+    <slick ng-if="numberLoaded" settings="slickConfig">
+        <div ng-repeat="img in carousel.images">
+            <div class="" ng-include="'tpl.html'"></div>
+        </div>
+    </slick>
+        
+  </div>
+  <div class="col ocult m1" style="height: 200px"> 
+      <a class="left" style="margin-top: 86px;" href="javascript:void(0);" ng-click="slickConfig.method.slickNext()"><i class="material-icons">fast_forward</i></a>
+  </div>
+</div>
+<!--Main container-->
+<div class="container">
+  <div class="section">
+    <!--   Icon Section   -->
+    <div class="row">
+      <div class="col s12 m10">
+        <div class="row">
+          <div class="row">
+            <div class="input-field col s5">
+              <input id="buscar" ng-model="search.nombre" type="text" class="validate">
+              <label for="buscar">Buscar</label>
+            </div>
+            <div class="col s3" input-field>
+                <select class="" ng-model="search.anio" material-select watch>
+                    <option value="" seleted >Ninguno</option>
+                    <option ng-repeat="value in years" value="{{value.value}}" >{{value.value}}</option>
+                </select>
+                <label>Año</label>
+            </div>
+            <div class="col s4" input-field>
+                <select class="" ng-model="search.genero" material-select watch>
+                    <option value="" seleted >Ninguno</option>
+                    <option ng-repeat="value in genres" value="{{value.value}}">{{value.value}}</option>
+                </select>
+                <label>Género</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 m4 l3" ng-repeat="trailer in trailers=(trailerElements | filter:search | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit)">
+            <div class="card">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" height="160" ng-src="{{trailer.caratula}}">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"><p class="titulo" tooltipped data-position="top" data-delay="150"data-tooltip="{{trailer.nombre}}">{{trailer.nombre}}</p><i class="material-icons right">more_vert</i></span>
+                <p>{{trailer.anio}}</p>
+                <p style="text-align: center" class="titulo"><strong ng-repeat="genero in trailer.genero">-{{genero}}-</strong></p>
+              </div>
+              <div class="card-action">
+                <div class="row">
+                  <button class="col s12 waves-effect waves-light btn" ng-click="modal(trailer)" >Ver Trailer</button>
+                </div>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{trailer.nombre}}<i class="material-icons right">close</i></span>
+                <p>{{trailer.sinopsis}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s5 offset-s4">
+            <pagination
+                page="currentPage"
+                page-size="entryLimit"
+                total="total.length"
+                show-prev-next="true"
+                use-simple-prev-next="false"
+                dots="...."
+                hide-if-empty="true"
+                adjacent="2"
+                scroll-top="false"
+                pagination-action="changePage(page)" />
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="col s12 m2">
+        <div class="icon-block">
+          <h2 class="center light-blue-text"><i class="material-icons">movie</i></h2>
+          <h5 class="center">Selecciona tu pelicula favorita</h5>
+          <p class="light">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <br>
+  <div class="section">
+  </div>
+</div>
+
+<!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>{{trailer.nombre}}</h4>
+      <p>{{trailer.sinopsis}}</p>
+    <div class="embed-responsive embed-responsive-16by9 video-wrapper">
+        <youtube-video class="embed-responsive-item" video-id="theBestVideo"></youtube-video>
+    </div>    
+  </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>

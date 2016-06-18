@@ -1,0 +1,48 @@
+<!--Main container-->
+<div class="container">
+<div class="row">
+  <div ng-show="extructure.deploy" class="col s12 m6 offset-m3 z-depth-6 card-panel">
+    <div class="row">
+    <h4 style="text-align: center">{{extructure.title}}</h4>
+    </div>
+    <div class="row">
+      <form name="trailerForm" ng-submit="insert()" class="col s10 offset-s1">
+        <p ng-show="invalid!=null">los campos <strong ng-repeat="val in invalid">{{val}}, </strong> son requeridos</p>
+        <p ng-show="trailerForm.caratula.$error.url">La url de la caratula es inválida debe ser http://ejemplo</p>
+        <p ng-show="trailerForm.video.$error.url">La url del video es inválida debe ser http://ejemplo</p>
+        <div class="row">
+          <div class="input-field col s12" ng-repeat="input in extructure.extructure.inputs" >
+            <i class="material-icons prefix">{{input.icon}}</i>
+            <input name="{{input.attr.id}}" ng-model="input.model" type="{{input.type}}" class="{{input.attr.class}}" required>
+            <label for="{{input.attr.id}}">{{input.label}}</label>
+          </div>
+          <div class="col s12" input-field ng-repeat="select in extructure.extructure.selectsMulti">
+            <i class="material-icons prefix">{{select.icon}}</i>
+            <select name="{{select.attr.id}}" ng-model="select.model" type="{{select.type}}" multiple material-select watch>
+               <option ng-repeat="value in select.options" value="{{value.key}}" >{{value.value}}</option>
+            </select>
+            <label>{{select.label}}</label>
+          </div>
+          <div class="col s12" input-field ng-repeat="select in extructure.extructure.selects">
+            <i class="material-icons prefix">{{select.icon}}</i>
+            <select name="{{select.attr.id}}" ng-model="select.model" type="{{select.type}}" material-select watch>
+               <option ng-repeat="value in select.options" value="{{value.key}}" >{{value.value}}</option>
+            </select>
+            <label>{{select.label}}</label>
+          </div>
+          <div class="col s12" input-field ng-repeat="textArea in extructure.extructure.textArea">
+            <i class="material-icons prefix">{{textArea.icon}}</i>
+            <textarea name="{{textArea.attr.id}}" ng-model="textArea.model" class="{{textArea.attr.class}}" required></textarea>
+            <label for="{{textArea.attr.id}}">{{textArea.label}}</label>
+          </div>
+          <div class="col s12" ng-repeat="action in extructure.extructure.actions">
+            <button ng-click="null" class="{{action.attr.class}}" type="{{action.type}}">{{action.name}}
+              <i class="material-icons right">{{action.icon}}</i>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>

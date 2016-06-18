@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="app">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>MyTrailers</title>
+
+  <!--css styles-->
+  <link rel="icon" type="image/png" href="css/claqueta.png" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/main.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/slick.css" type="text/css" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/slick-theme.css">
+</head>
+<body ng-controller="mainController">
+  <!--Nav main-->
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="#home" class="brand-logo"><img src="css/logo.png"> {{menu.logo}}</a>
+      <ul ng-show="!sideDeploy" class="right hide-on-med-and-down">
+        <li ng-repeat="option in menu.options "><a href="{{option.link}}">{{option.name}}</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+         <li ng-repeat="option in menu.options"><a href="{{option.link}}">{{option.name}}</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" ng-class="{activeBtn:sideDeploy}" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+  
+  <div ng-view>
+    
+  </div>
+
+  <!--Footer-->
+  <footer class="page-footer light-blue">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">{{footer.column1.title}}</h5>
+          <p class="grey-text text-lighten-4">{{footer.column1.description}}</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">{{footer.column2.title}}</h5>
+          <ul>
+            <li ng-repeat="link in footer.column2.description"><a class="white-text" href="{{link.link}}">{{link.name}}</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">{{footer.column3.title}}</h5>
+          <ul>
+            <li ng-repeat="link in footer.column3.description"><a class="white-text" href="{{link.link}}">{{link.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="{{footer.made.link}}">{{footer.made.name}}</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-route.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/3.0.3/firebase.js"></script>
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.1.8/angular-materialize.min.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyD0Vh0sCLBmV1pF7rNyO_mD-YWcDJ4LX90",
+      authDomain: "trailersjlr.firebaseapp.com",
+      databaseURL: "https://trailersjlr.firebaseio.com",
+      storageBucket: "",
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="js/angular-youtube-embed.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/angular-slick.min.js"></script>
+  <script src="js/init.js"></script>
+  
+  <!--  Scripts angular aplication-->
+  <script src="app/app.js"></script>
+  <script src="app/factories/formElements.js"></script>
+  <script src="app/factories/trailerElements.js"></script>
+  <script src="app/controllers/mainController.js"></script>
+  <script src="app/controllers/homeController.js"></script>
+  <script src="app/controllers/insertController.js"></script>
+
+
+</body>
+</html>
